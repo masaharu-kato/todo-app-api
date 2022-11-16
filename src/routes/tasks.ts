@@ -12,3 +12,5 @@ router.post('/delete-task', async(req, res) => { return await tasks_ctrl.delete_
 
 router.post('/set-task-done'  , async(req, res) => { return await tasks_ctrl.set_task_done  (req, res) })
 router.post('/set-task-undone', async(req, res) => { return await tasks_ctrl.set_task_undone(req, res) })
+
+router.post('/delete-done-tasks', async(req, res) => { return await tasks_ctrl.delete_done_tasks(req, res) })
