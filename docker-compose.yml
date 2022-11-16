@@ -1,0 +1,33 @@
+# Docker compose config file for docker-compose command
+#   (not using VSCode .devcontainer)
+
+version: '3.8'
+
+services:
+  app:
+    container_name: todo-app-api
+    build: 
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - .:/workspace:cached
+
+    working_dir: /workspace
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    ports:
+    - "8080:8080"
+
+  db:
+    image: mongo:latest
+    restart: unless-stopped
+    volumes:
+      - mongodb-data:/data/db
+
+    # Runs app on the same network as the application
+    network_mode: service:app
+
+volumes:
+  mongodb-data:
