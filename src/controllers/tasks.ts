@@ -49,3 +49,8 @@ export async function set_task_undone(req: Request, res: Response) {
     await task.save()
     return res.json({status: 'success'})
 }
+
+export async function delete_done_tasks(req: Request, res: Response) {
+    await TaskModel.deleteMany({done: true})
+    return res.json({status: 'success'})
+}
